@@ -49,7 +49,7 @@ public class PhotoGalleriesPage extends Page {
 //        sendAndSavePhoto(driver, "C:/Users/Sofija/Desktop/bunny.jpg");
         pg.setTitle(sendTextOnTitleField(driver));
         pg.setDescription(sendTextOnDescriptionField(driver));
-        sendPhoto(driver, "C:/Users/Sofija/Desktop/bunny.jpg");
+        sendPhoto(driver, "/Users/qa/Desktop/bunny.jpg");
         clickOnSave(driver);
         backToPhoto(driver);
         pg.setId(getIdFromLastRow(driver, "data-photo-gallery-id"));
@@ -69,7 +69,7 @@ public class PhotoGalleriesPage extends Page {
         String title = sendTextOnTitleField(driver);
         pg.setTitle(title);
         pg.setDescription(title);
-        sendPhoto(driver, "C:/Users/Sofija/Desktop/rabbit.jpg");
+        sendPhoto(driver, "/Users/qa/Desktop/rabbit.jpg");
         clickOnSave(driver);
         return pg;
     

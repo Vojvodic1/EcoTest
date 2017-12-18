@@ -45,12 +45,7 @@ public class Page {
         return text;
     }
     
-    public int chooseLinkType(WebDriver driver, By locator, int i) {
-        WebElement choose = waitForElement(driver, locator);
-        Select comboBox = new Select(choose);
-        comboBox.selectByIndex(i);
-        return i;
-    }
+   
     
     public void sendUrlOnField(WebDriver driver, By locator) {
         WebElement urlLink = waitForElement(driver, locator);

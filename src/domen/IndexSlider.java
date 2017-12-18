@@ -13,7 +13,7 @@ public class IndexSlider {
     private int id;
     private String title;
     private String description;
-    private int linkType;
+    private String linkType;
     private String linkLabel;
     private String url;
     
@@ -43,11 +43,11 @@ public class IndexSlider {
         this.description = description;
     }
 
-    public int getLinkType() {
+    public String getLinkType() {
         return linkType;
     }
 
-    public void setLinkType(int linkType) {
+    public void setLinkType(String linkType) {
         this.linkType = linkType;
     }
 

@@ -65,7 +65,7 @@ public class DbConnection {
               is.setId(rs.getInt(1));
               is.setTitle(rs.getString(2));
               is.setDescription(rs.getString(3));
-              is.setLinkType(rs.getInt(4));
+              is.setLinkType(rs.getString(4));
               is.setLinkLabel(rs.getString(5));
               is.setDeleted(false);
             } else {

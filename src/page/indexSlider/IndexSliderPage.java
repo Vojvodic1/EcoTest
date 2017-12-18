@@ -9,6 +9,8 @@ import page.basic.Page;
 import domen.IndexSlider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  *
@@ -28,24 +30,26 @@ public class IndexSliderPage extends Page {
         return sendTextOnField(driver, By.id("description"));
     }
 
-    private int chooseLinkOption(WebDriver driver, int i) {
-        return chooseLinkType(driver, By.id("link_type"), i);
-    }
-
+//    private String chooseLinkTypeField(WebDriver driver) {
+//        return chooseLinkType(driver, By.id("link_type"));
+//    }
     private String sendUrlOnExternalField(WebDriver driver) {
         return sendUrlOnUrlField(driver, By.id("external_link_url"));
     }
-    
+
     private String sendUrlOnInternalField(WebDriver driver) {
         return sendUrlOnUrlField(driver, By.id("internal_link_url"));
     }
-    
+
     private String textOnLinkLabel(WebDriver driver) {
         return sendTextOnField(driver, By.id("link_label"));
     }
 
-    private void sendUrlOnUrlField(WebDriver driver) {
-        sendUrlOnField(driver, By.id("internal_link_url"));
+    public String chooseLinkTypeField(WebDriver driver, int i) {
+        WebElement linkType = driver.findElement(By.id("link_type"));
+        Select chooseLinkType = new Select(linkType);
+        chooseLinkType.selectByIndex(i);
+        return chooseLinkType.getFirstSelectedOption().getAttribute("value");
     }
 
     private void sendPic(WebDriver driver, String photoLocation) {
@@ -62,10 +66,10 @@ public class IndexSliderPage extends Page {
         clickOnAddIndexSlider(driver);
         is.setTitle(sendTextOnTitleField(driver));
         is.setDescription(sendTextOnDescriptionField(driver));
-        is.setLinkType(chooseLinkOption(driver, 2));
+        is.setLinkType(chooseLinkTypeField(driver, 2));
         is.setLinkLabel(textOnLinkLabel(driver));
         is.setUrl(sendUrlOnInternalField(driver));
-        sendPic(driver, "C:/Users/Sofija/Desktop/bunny.jpg");
+        sendPic(driver, "/Users/qa/Desktop/bunny.jpg");
         clickOnSave(driver);
         is.setId(getIdFromLastRow(driver, "data-index-slide-id"));
         return is;
@@ -82,10 +86,10 @@ public class IndexSliderPage extends Page {
 
         is.setTitle(sendTextOnTitleField(driver));
         is.setDescription(sendTextOnDescriptionField(driver));
-        is.setLinkType(chooseLinkOption(driver, 3));
+        is.setLinkType(chooseLinkTypeField(driver, 3));
         is.setLinkLabel(sendTextOnTitleField(driver));
         is.setUrl(sendUrlOnExternalField(driver));
-        sendPic(driver, "C:/Users/Sofija/Desktop/rabbit.jpg");
+        sendPic(driver, "/Users/qa/Desktop/rabbit.jpg");
         clickOnSave(driver);
         return is;
 
