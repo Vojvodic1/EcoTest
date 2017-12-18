@@ -5,6 +5,7 @@
  */
 package dbConnection;
 
+import domen.IndexSlider;
 import domen.PhotoGallery;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -50,6 +51,31 @@ public class DbConnection {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static IndexSlider getIndexSlider(String query) {
+        IndexSlider is = new IndexSlider();
+        try {
+            
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            System.out.println(query);
+            
+            if(rs.next()){
+              is.setId(rs.getInt(1));
+              is.setTitle(rs.getString(2));
+              is.setDescription(rs.getString(3));
+              is.setLinkType(rs.getInt(4));
+              is.setLinkLabel(rs.getString(5));
+              is.setDeleted(false);
+            } else {
+                is.setDeleted(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return is;
+    }
 
     public static PhotoGallery getPhotoGallery(String query) {
         PhotoGallery pg = new PhotoGallery();
@@ -72,6 +98,26 @@ public class DbConnection {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pg;
+    }
+    
+    public static Boolean isDeleted(String query) {
+         
+        try {
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            System.out.println(query);
+
+            if (rs.next()) {
+                return false;
+            } else {
+                return  true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
 

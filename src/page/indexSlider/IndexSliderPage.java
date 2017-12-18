@@ -35,9 +35,13 @@ public class IndexSliderPage extends Page {
     private String sendUrlOnExternalField(WebDriver driver) {
         return sendUrlOnUrlField(driver, By.id("external_link_url"));
     }
-
-    private void textOnLinkLabel(WebDriver driver) {
-        sendTextOnField(driver, By.id("link_label"));
+    
+    private String sendUrlOnInternalField(WebDriver driver) {
+        return sendUrlOnUrlField(driver, By.id("internal_link_url"));
+    }
+    
+    private String textOnLinkLabel(WebDriver driver) {
+        return sendTextOnField(driver, By.id("link_label"));
     }
 
     private void sendUrlOnUrlField(WebDriver driver) {
@@ -53,16 +57,18 @@ public class IndexSliderPage extends Page {
         clickOnElement(driver, By.id("new_indexSlide_submit"));
     }
 
-    public void addIndexSlider(WebDriver driver) {
+    public IndexSlider addIndexSlider(WebDriver driver) {
+        IndexSlider is = new IndexSlider();
         clickOnAddIndexSlider(driver);
-        sendTextOnTitleField(driver);
-        sendTextOnDescriptionField(driver);
-        chooseLinkOption(driver, 2);
-        textOnLinkLabel(driver);
-        sendUrlOnUrlField(driver);
+        is.setTitle(sendTextOnTitleField(driver));
+        is.setDescription(sendTextOnDescriptionField(driver));
+        is.setLinkType(chooseLinkOption(driver, 2));
+        is.setLinkLabel(textOnLinkLabel(driver));
+        is.setUrl(sendUrlOnInternalField(driver));
         sendPic(driver, "C:/Users/Sofija/Desktop/bunny.jpg");
         clickOnSave(driver);
-
+        is.setId(getIdFromLastRow(driver, "data-index-slide-id"));
+        return is;
     }
 
     public void chooseEditFromLastRow(WebDriver driver) {

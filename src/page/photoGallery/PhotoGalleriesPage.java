@@ -42,6 +42,7 @@ public class PhotoGalleriesPage extends Page {
         clickOnElement(driver, By.className("glyphicon-arrow-left"));
     }
     
+    
     public PhotoGallery addNewPhoto(WebDriver driver){
         PhotoGallery pg = new PhotoGallery();
         clickOnAddPhotoGallery(driver);
@@ -60,16 +61,6 @@ public class PhotoGalleriesPage extends Page {
         chooseOptionFromLastRow(driver, By.className("glyphicon-pencil"));
     }
     
-    
-    
-    private void sendAndSavePhoto(WebDriver driver, String photoLocation){
-        sendTextOnTitleField(driver);
-        sendTextOnDescriptionField(driver);
-        sendPhoto(driver, photoLocation);
-        clickOnSave(driver);
-        backToPhoto(driver);
-        
-    }
 
     public PhotoGallery editPhotoGallery(WebDriver driver){
         PhotoGallery pg = new PhotoGallery();

@@ -70,16 +70,23 @@ public class TestPhotoGalleryPage {
         PhotoGallery photoDb = DbConnection.getPhotoGallery("SELECT * FROM `cms_photo_galleries` WHERE id ="+photoWeb.getId());
 
         Assert.assertEquals(photoWeb.getId(), photoDb.getId());
-//        Assert.assertEquals(photoWeb.getTitle(), photoDb.getTitle());
+        Assert.assertEquals(photoWeb.getTitle(), photoDb.getTitle());
     }
 
     @Test
     public void testEditPhotoGallery() {
         PhotoGallery photoWeb =  photoGalleriesPage.editPhotoGallery(driver);
+        
+        PhotoGallery photoDb = DbConnection.getPhotoGallery("SELECT * FROM `cms_photo_galleries` WHERE id ="+photoWeb.getId());
+
+        Assert.assertEquals(photoWeb.getId(), photoDb.getId());
+        Assert.assertEquals(photoWeb.getTitle(), photoDb.getTitle());
     }
     
     @Test
     public void testDeletePhoto(){
         PhotoGallery photoWeb = photoGalleriesPage.deletePhoto(driver);
+        Boolean isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_photo_galleries` WHERE id ="+photoWeb.getId());
+        Assert.assertEquals(Boolean.TRUE, isDeleted);
     }
 }
