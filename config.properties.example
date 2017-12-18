@@ -1,0 +1,10 @@
+###LOGING SETTINGS##
+url = 
+username = 
+password = 
+
+
+###DATA BASE SETTINGS###
+db.url = 
+db.username = 
+db.password = 
