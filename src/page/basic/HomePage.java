@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page.indexSlider.IndexSliderPage;
 import page.photoGallery.PhotoGalleriesPage;
+import page.portfolios.PortfoliosPage;
 
 /**
  *
@@ -26,6 +27,13 @@ public class HomePage extends Page {
         clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[3]/a"));
         PhotoGalleriesPage pgp = new PhotoGalleriesPage();
         return pgp;
+    }
+    
+    public PortfoliosPage clickOnPortfolios(WebDriver driver){
+        clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[7]/a"));
+        PortfoliosPage pp = new PortfoliosPage();
+        return pp;
+    
     }
    
   

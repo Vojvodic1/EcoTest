@@ -1,2 +1,9 @@
 /config.properties
 config.properties
+.DS_Store
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
