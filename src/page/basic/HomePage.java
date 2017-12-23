@@ -16,25 +16,24 @@ import page.portfolios.PortfoliosPage;
  * @author Sofija
  */
 public class HomePage extends Page {
-    
-    public IndexSliderPage clickOnIndexSlider(WebDriver driver){
+
+    public IndexSliderPage clickOnIndexSlider(WebDriver driver) {
         clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[2]/a"));
         IndexSliderPage isp = new IndexSliderPage();
         return isp;
     }
-    
-    public PhotoGalleriesPage clickOnPhotoGalleries(WebDriver driver){
+
+    public PhotoGalleriesPage clickOnPhotoGalleries(WebDriver driver) {
         clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[3]/a"));
         PhotoGalleriesPage pgp = new PhotoGalleriesPage();
         return pgp;
     }
-    
-    public PortfoliosPage clickOnPortfolios(WebDriver driver){
-        clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[7]/a"));
+
+    public PortfoliosPage clickOnAllPortfolios(WebDriver driver) {
+        clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[7]/ul/li[1]/a"));
         PortfoliosPage pp = new PortfoliosPage();
         return pp;
-    
+
     }
-   
-  
+
 }

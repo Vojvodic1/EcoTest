@@ -21,9 +21,7 @@ public class PortfoliosPage extends Page {
 
     
 
-    private void clickOnAllPortfolios(WebDriver driver) {
-        clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[7]/ul/li[1]/a"));
-    }
+ 
 
     private void clickOnAddPortfolio(WebDriver driver) {
         clickOnElement(driver, By.className("glyphicon-plus"));
@@ -35,14 +33,20 @@ public class PortfoliosPage extends Page {
     }
 
     private void checkBoxDataElement(WebDriver driver){
-        WebElement table = driver.findElement(By.className("multiselect-selected-text"));
-        List<WebElement> checkBoxes = table.findElements(By.className("multiselect-container"));
+        WebElement multiSelectButton = driver.findElement(By.className("multiselect"));
+        multiSelectButton.click();
+        WebElement table = driver.findElement(By.className("multiselect-container"));
+        List<WebElement> checkBoxes = table.findElements(By.tagName("li"));
+        int counter = 0;
         for (WebElement checkBox : checkBoxes) {
-          
-            if (checkBox.getAttribute("value").equals("16") || checkBox.getAttribute("value").equals("18")) {
+            WebElement input = checkBox.findElement(By.tagName("input"));
+            if (input.getAttribute("value").equals("16") || input.getAttribute("value").equals("18")) {
                 checkBox.click();
+                counter ++;
             }
-
+            if(counter > 1) {
+                break;
+            }
         }
     }
     
@@ -59,7 +63,7 @@ public class PortfoliosPage extends Page {
     }
     
     private void sendPhoto(WebDriver driver, String photoLocation){
-        sendTextOnField(driver, By.id("portfolio_photo"), "/Users/qa/Desktop/pineapple.jpg");
+        sendTextOnField(driver, By.id("portfolio_photo"), "C:/Users/Sofija/Desktop/pineapple.jpg");
     }
     
     private void clickOnSave(WebDriver driver){
@@ -72,17 +76,13 @@ public class PortfoliosPage extends Page {
     
     public Portfolios addNewPortfolio(WebDriver driver) throws InterruptedException{
         Portfolios pp = new Portfolios();
-        clickOnAllPortfolios(driver);
         clickOnAddPortfolio(driver);
-        Thread.sleep(2000);
         pp.setFirstName(sendFirstName(driver));
-        checkBoxDataElement(driver);
-        Thread.sleep(2000);
+        checkBoxDataElement(driver);       
         pp.setChar1(textOnCharacteristic1(driver));
         pp.setChar2(textOnCharacteristic2(driver));
         pp.setResume(textOnResume(driver));
-        Thread.sleep(2000);
-        sendPhoto(driver, "/Users/qa/Desktop/pineapple.jpg");
+        sendPhoto(driver, "C:/Users/Sofija/Desktop/pineapple.jpg");
         clickOnSave(driver);
         backOnPortfolios(driver);
         return pp;   

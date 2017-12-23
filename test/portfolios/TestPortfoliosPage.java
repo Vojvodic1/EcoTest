@@ -51,7 +51,7 @@ public class TestPortfoliosPage {
     
     @Before
     public void testNewPortfolio() {
-        portfoliosPage = homePage.clickOnPortfolios(driver);
+        portfoliosPage = homePage.clickOnAllPortfolios(driver);
         System.out.println("Page title is: " + driver.getTitle());
     }
     
@@ -61,7 +61,7 @@ public class TestPortfoliosPage {
     }
 
    @Test
-   public void TestAddPortfolio() throws InterruptedException{
+   public void testAddPortfolio() throws InterruptedException{
        portfoliosPage.addNewPortfolio(driver);
     
    }

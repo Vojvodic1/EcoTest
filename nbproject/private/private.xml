@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/page/indexSlider/IndexSliderPage.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/page/photoGallery/PhotoGalleriesPage.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/.gitignore</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/domen/Portfolios.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/domen/PhotoGallery.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/page/portfolios/PortfoliosPage.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/page/basic/Page.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/test/portfolios/TestPortfoliosPage.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/test/photoGallery/TestPhotoGalleryPage.java</file>
-            <file>file:/Users/qa/Desktop/workspace/EcoTest/src/page/basic/HomePage.java</file>
+            <file>file:/C:/Users/Sofija/Desktop/workplace/EcoTest/test/portfolios/TestPortfoliosPage.java</file>
+            <file>file:/C:/Users/Sofija/Desktop/workplace/EcoTest/src/page/basic/HomePage.java</file>
+            <file>file:/C:/Users/Sofija/Desktop/workplace/EcoTest/src/page/portfolios/PortfoliosPage.java</file>
+            <file>file:/C:/Users/Sofija/Desktop/workplace/EcoTest/src/pageUtil/PageUtilities.java</file>
         </group>
     </open-files>
 </project-private>

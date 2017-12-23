@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class PageUtilities {
 
     public static WebDriver initWebDriver(WebDriver driver) {
-        System.setProperty("webdriver.chrome.driver", "/Users/qa/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Sofija/Desktop/workplace/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;
