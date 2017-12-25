@@ -7,6 +7,7 @@ package dbConnection;
 
 import domen.IndexSlider;
 import domen.PhotoGallery;
+import domen.Portfolios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -99,6 +100,31 @@ public class DbConnection {
         }
         return pg;
     }
+    
+    public static Portfolios getPortfolios(String query) {
+        Portfolios pp = new Portfolios();
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            System.out.println(query);
+            
+            if(rs.next()) {
+                pp.setId(rs.getInt(1));
+                pp.setFirstName(rs.getString(2));
+                pp.setDataCategories(rs.getString(3));
+                pp.setChar1(rs.getString(4));
+                pp.setChar2(rs.getString(5));
+                pp.setResume(rs.getString(6));
+            }else {
+                pp.setDeleted(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pp;
+            
+        }
+    
     
     public static Boolean isDeleted(String query) {
          

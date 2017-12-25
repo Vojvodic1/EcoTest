@@ -19,10 +19,6 @@ import page.basic.Page;
  */
 public class PortfoliosPage extends Page {
 
-    
-
- 
-
     private void clickOnAddPortfolio(WebDriver driver) {
         clickOnElement(driver, By.className("glyphicon-plus"));
     }
@@ -32,61 +28,83 @@ public class PortfoliosPage extends Page {
 
     }
 
-    private void checkBoxDataElement(WebDriver driver){
+    private void checkBoxDataElement(WebDriver driver) {
         WebElement multiSelectButton = driver.findElement(By.className("multiselect"));
         multiSelectButton.click();
         WebElement table = driver.findElement(By.className("multiselect-container"));
         List<WebElement> checkBoxes = table.findElements(By.tagName("li"));
-        int counter = 0;
-        for (WebElement checkBox : checkBoxes) {
-            WebElement input = checkBox.findElement(By.tagName("input"));
-            if (input.getAttribute("value").equals("16") || input.getAttribute("value").equals("18")) {
-                checkBox.click();
-                counter ++;
-            }
-            if(counter > 1) {
-                break;
-            }
-        }
+
+        int a = (int) (Math.random() * checkBoxes.size());
+        checkBoxes.get(a).click();
+        int b = (int) (Math.random() * checkBoxes.size());
+        checkBoxes.get(b).click();
+        int c = (int) (Math.random() * checkBoxes.size());
+        checkBoxes.get(c).click();
+        multiSelectButton.click();
     }
-    
-    private String textOnCharacteristic1(WebDriver driver){
+
+    private String textOnCharacteristic1(WebDriver driver) {
         return sendTextOnField(driver, By.id("characteristic1"));
     }
-    
-    private String textOnCharacteristic2(WebDriver driver){
+
+    private String textOnCharacteristic2(WebDriver driver) {
         return sendTextOnField(driver, By.id("characteristic2"));
     }
-    
-    private String textOnResume(WebDriver driver){
+
+    private String textOnResume(WebDriver driver) {
         return sendTextOnField(driver, By.id("description"));
     }
-    
-    private void sendPhoto(WebDriver driver, String photoLocation){
-        sendTextOnField(driver, By.id("portfolio_photo"), "C:/Users/Sofija/Desktop/pineapple.jpg");
+
+    private void sendPhoto(WebDriver driver, String photoLocation) {
+        sendTextOnField(driver, By.id("portfolio_photo"), "/Users/qa/Desktop/pineapple.jpg");
     }
-    
-    private void clickOnSave(WebDriver driver){
+
+    private void clickOnSave(WebDriver driver) {
         clickOnElement(driver, By.id("new_portfolio_submit"));
     }
-    
-    private void backOnPortfolios(WebDriver driver){
-        clickOnElement(driver, By.className("glyphicon-chevron-left"));
+
+    public void chooseEditFromLastRow(WebDriver driver) {
+        chooseOptionFromLastRow(driver, By.className("glyphicon-pencil"));
     }
-    
-    public Portfolios addNewPortfolio(WebDriver driver) throws InterruptedException{
+
+    public Portfolios addNewPortfolio(WebDriver driver) {
         Portfolios pp = new Portfolios();
         clickOnAddPortfolio(driver);
         pp.setFirstName(sendFirstName(driver));
-        checkBoxDataElement(driver);       
+        checkBoxDataElement(driver);
         pp.setChar1(textOnCharacteristic1(driver));
         pp.setChar2(textOnCharacteristic2(driver));
         pp.setResume(textOnResume(driver));
-        sendPhoto(driver, "C:/Users/Sofija/Desktop/pineapple.jpg");
+        sendPhoto(driver, "/Users/qa/Desktop/pineapple.jpg");
         clickOnSave(driver);
-        backOnPortfolios(driver);
-        return pp;   
-            
-        }
+        return pp;
 
+    }
+
+    public Portfolios editPortfolio(WebDriver driver) {
+        Portfolios pp = new Portfolios();
+        pp.setId(getIdFromWeb(driver));
+        chooseEditFromLastRow(driver);
+        pp.setFirstName(sendFirstName(driver));
+        checkBoxDataElement(driver);
+        pp.setChar1(textOnCharacteristic1(driver));
+        pp.setChar2(textOnCharacteristic2(driver));
+        pp.setResume(textOnResume(driver));
+        sendPhoto(driver, "/Users/qa/Desktop/apple.jpg");
+        clickOnSave(driver);
+        return pp;
+
+    }
+
+    public Portfolios deletePortfolio(WebDriver driver) {
+        Portfolios pp = new Portfolios();
+        pp.setId(getIdFromWeb(driver));
+        chooseOptionFromLastRow(driver, By.className("glyphicon-trash"));
+        clickOnElement(driver, By.className("btn-danger"));
+        return pp;
+    }
+
+    public int getIdFromWeb(WebDriver driver) {
+        return getIdFromLastRow(driver, "data-portfolio-id");
+    }
 }
