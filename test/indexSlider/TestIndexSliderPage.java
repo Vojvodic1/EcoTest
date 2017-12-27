@@ -67,6 +67,8 @@ public class TestIndexSliderPage {
 
         Assert.assertEquals(indexWeb.getId(), indexDb.getId());
         Assert.assertEquals(indexWeb.getTitle(), indexDb.getTitle());
+       
+      
     }
 
     @Test
@@ -78,7 +80,9 @@ public class TestIndexSliderPage {
         IndexSlider indexDb = DbConnection.getIndexSlider("SELECT * FROM `cms_index_slides` WHERE id =" + indexWeb.getId());
 
         Assert.assertEquals(indexWeb.getId(), indexDb.getId());
- 
+    
+       
+    
 
     }
 

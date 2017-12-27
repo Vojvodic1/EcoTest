@@ -5,6 +5,7 @@
  */
 package dbConnection;
 
+import domen.Categories;
 import domen.IndexSlider;
 import domen.PhotoGallery;
 import domen.Portfolios;
@@ -124,6 +125,28 @@ public class DbConnection {
         return pp;
             
         }
+    
+    public static Categories getCategories(String query) {
+        Categories cp = new Categories();
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            System.out.println(query);
+            
+            if(rs.next()) {
+                cp.setId(rs.getInt(1));
+                cp.setName(rs.getString(2));
+                cp.setResume(rs.getString(3));
+            }else {
+                cp.setDeleted(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cp;
+        }
+
+    
     
     
     public static Boolean isDeleted(String query) {

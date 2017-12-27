@@ -7,6 +7,7 @@ package page.basic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import page.categories.CategoriesPage;
 import page.indexSlider.IndexSliderPage;
 import page.photoGallery.PhotoGalleriesPage;
 import page.portfolios.PortfoliosPage;
@@ -34,6 +35,12 @@ public class HomePage extends Page {
         PortfoliosPage pp = new PortfoliosPage();
         return pp;
 
+    }
+    
+    public CategoriesPage clickOnCategories(WebDriver driver){
+        clickOnElement(driver, By.xpath("//*[@id='side-menu']/li[7]/ul/li[3]/a"));
+        CategoriesPage cp = new CategoriesPage();
+        return cp;
     }
 
 }

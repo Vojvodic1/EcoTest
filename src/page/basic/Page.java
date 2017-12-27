@@ -6,6 +6,7 @@
 package page.basic;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -76,6 +77,7 @@ public class Page {
     }
     
     private WebElement findLastRow(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         WebElement table = driver.findElement(By.id("rows-table"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
         

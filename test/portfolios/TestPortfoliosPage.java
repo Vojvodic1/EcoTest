@@ -43,7 +43,7 @@ public class TestPortfoliosPage {
 
     @AfterClass
     public static void tearDownClass() {
-         DbConnection.close();
+        DbConnection.close();
         driver.quit();
     }
 
@@ -59,41 +59,29 @@ public class TestPortfoliosPage {
     }
 
     @Test
-    public void testAddPortfolio() {
+    public void testAddPortfolio() throws InterruptedException {
         Portfolios portWeb = portfoliosPage.addNewPortfolio(driver);
         System.out.println("Portfolio is created");
         Portfolios portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE id =" + portWeb.getId());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE title =" + portWeb.getFirstName());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE data_categories =" + portWeb.getDataCategories());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE characteristic1 =" + portWeb.getChar1());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE characteristic2 =" + portWeb.getChar2());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE description =" + portWeb.getResume());
 
         Assert.assertEquals(portWeb.getId(), portDb.getId());
         Assert.assertEquals(portWeb.getFirstName(), portDb.getFirstName());
-        Assert.assertEquals(portWeb.getDataCategories(), portDb.getDataCategories());
-        Assert.assertEquals(portWeb.getChar1(), portDb.getDataCategories());
-        Assert.assertEquals(portWeb.getChar2(), portDb.getChar1());
+        Assert.assertEquals(portWeb.getChar1(), portDb.getChar1());
+        Assert.assertEquals(portWeb.getChar2(), portDb.getChar2());
         Assert.assertEquals(portWeb.getResume(), portDb.getResume());
 
     }
 
     @Test
     public void testEditPortfolio() {
-       Portfolios portWeb = portfoliosPage.editPortfolio(driver);
-       System.out.println("Portfolio is edited");
+        Portfolios portWeb = portfoliosPage.editPortfolio(driver);
+        System.out.println("Portfolio is edited");
         Portfolios portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE id =" + portWeb.getId());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE title =" + portWeb.getFirstName());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE data_categories =" + portWeb.getDataCategories());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE characteristic1 =" + portWeb.getChar1());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE characteristic2 =" + portWeb.getChar2());
-        portDb = DbConnection.getPortfolios("SELECT * FROM `cms_portfolios` WHERE description =" + portWeb.getResume());
 
         Assert.assertEquals(portWeb.getId(), portDb.getId());
         Assert.assertEquals(portWeb.getFirstName(), portDb.getFirstName());
-        Assert.assertEquals(portWeb.getDataCategories(), portDb.getDataCategories());
-        Assert.assertEquals(portWeb.getChar1(), portDb.getDataCategories());
-        Assert.assertEquals(portWeb.getChar2(), portDb.getChar1());
+        Assert.assertEquals(portWeb.getChar1(), portDb.getChar1());
+        Assert.assertEquals(portWeb.getChar2(), portDb.getChar2());
         Assert.assertEquals(portWeb.getResume(), portDb.getResume());
     }
 
@@ -101,20 +89,9 @@ public class TestPortfoliosPage {
     public void testDeletePortfolio() {
         Portfolios portWeb = portfoliosPage.deletePortfolio(driver);
         System.out.println("Portfolio is deleted");
-        
+
         Boolean isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE id =" + portWeb.getId());
         Assert.assertEquals(Boolean.TRUE, isDeleted);
-        isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE title =" + portWeb.getFirstName());
-        Assert.assertEquals(Boolean.TRUE, isDeleted);
-        isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE data_categories =" + portWeb.getDataCategories());
-        Assert.assertEquals(Boolean.TRUE, isDeleted);
-        isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE characteristic1 =" + portWeb.getChar1());
-        Assert.assertEquals(Boolean.TRUE, isDeleted);
-        isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE characteristic2 =" + portWeb.getChar2());
-        Assert.assertEquals(Boolean.TRUE, isDeleted);
-        isDeleted = DbConnection.isDeleted("SELECT * FROM `cms_portfolios` WHERE description =" + portWeb.getResume());
-        Assert.assertEquals(Boolean.TRUE, isDeleted);
-        
-        
+
     }
 }

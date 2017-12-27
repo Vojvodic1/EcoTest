@@ -65,12 +65,13 @@ public class TestPhotoGalleryPage {
    public void testAddPhotoGallery() {
         
         PhotoGallery photoWeb = photoGalleriesPage.addNewPhoto(driver);
-        System.out.println("PhotoGallery is saved!");
+        
         
         PhotoGallery photoDb = DbConnection.getPhotoGallery("SELECT * FROM `cms_photo_galleries` WHERE id ="+photoWeb.getId());
 
         Assert.assertEquals(photoWeb.getId(), photoDb.getId());
         Assert.assertEquals(photoWeb.getTitle(), photoDb.getTitle());
+
     }
 
     @Test
@@ -81,6 +82,8 @@ public class TestPhotoGalleryPage {
 
         Assert.assertEquals(photoWeb.getId(), photoDb.getId());
         Assert.assertEquals(photoWeb.getTitle(), photoDb.getTitle());
+
+        
     }
     
     @Test

@@ -67,9 +67,10 @@ public class PortfoliosPage extends Page {
         chooseOptionFromLastRow(driver, By.className("glyphicon-pencil"));
     }
 
-    public Portfolios addNewPortfolio(WebDriver driver) {
+    public Portfolios addNewPortfolio(WebDriver driver) throws InterruptedException {
         Portfolios pp = new Portfolios();
         clickOnAddPortfolio(driver);
+        
         pp.setFirstName(sendFirstName(driver));
         checkBoxDataElement(driver);
         pp.setChar1(textOnCharacteristic1(driver));
@@ -77,6 +78,8 @@ public class PortfoliosPage extends Page {
         pp.setResume(textOnResume(driver));
         sendPhoto(driver, "/Users/qa/Desktop/pineapple.jpg");
         clickOnSave(driver);
+        pp.setId(getIdFromWeb(driver));
+        Thread.sleep(5000);
         return pp;
 
     }
@@ -92,6 +95,7 @@ public class PortfoliosPage extends Page {
         pp.setResume(textOnResume(driver));
         sendPhoto(driver, "/Users/qa/Desktop/apple.jpg");
         clickOnSave(driver);
+        pp.setId(getIdFromWeb(driver));
         return pp;
 
     }

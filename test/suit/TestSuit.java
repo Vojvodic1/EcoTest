@@ -6,6 +6,7 @@
 package suit;
 
 
+import categories.TestCategories;
 import indexSlider.TestIndexSliderPage;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import photoGallery.TestPhotoGalleryPage;
+import portfolios.TestPortfoliosPage;
 
 
 
@@ -22,7 +24,7 @@ import photoGallery.TestPhotoGalleryPage;
  * @author IKA
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({TestPhotoGalleryPage.class, TestIndexSliderPage.class})
+@Suite.SuiteClasses({TestPhotoGalleryPage.class, TestIndexSliderPage.class, TestPortfoliosPage.class, TestCategories.class})
 public class TestSuit {
 
     @BeforeClass
